@@ -70,6 +70,18 @@ devmind.bat
 chmod +x devmind.sh && ./devmind.sh
 ```
 
+To install a global `devmind` command on Windows (user PATH), run once from the project folder:
+
+```bat
+devmind.bat --install
+```
+
+Then reopen your terminal and start DevMind from anywhere with:
+
+```bat
+devmind
+```
+
 Or manually:
 
 ```bash
