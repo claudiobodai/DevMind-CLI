@@ -100,6 +100,7 @@ python main.py
 | `index <path>` | Scan and index a folder. Skips `.gitignore` patterns and MD5-cached unchanged files. | `index ./my_project` |
 | `ask <question>` | Query your indexed codebase in natural language. | `ask How is authentication handled?` |
 | `map` | Generate `semantic_map.html` and open an interactive 3D vector cluster view. | `map` |
+| `resetdb [--yes]` | Delete all indexed vectors from the local database. Prompts for confirmation unless `--yes` is provided. | `resetdb` |
 | `clear` | Clear the terminal, keeping the ASCII header pinned at the top. | `clear` |
 | `exit` | Exit the CLI. | `exit` |
 

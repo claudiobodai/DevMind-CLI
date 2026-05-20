@@ -4,6 +4,18 @@ from test_ollama import generate_embedding
 chroma_client = chromadb.PersistentClient(path="./local_db")
 collection = chroma_client.get_or_create_collection(name="devmind_codebase")
 
+
+def reset_database():
+    """Delete all indexed data by recreating the target collection."""
+    global collection
+    try:
+        chroma_client.delete_collection(name="devmind_codebase")
+    except Exception:
+        # Collection may not exist yet; this is safe to ignore.
+        pass
+
+    collection = chroma_client.get_or_create_collection(name="devmind_codebase")
+
 def add_document(doc_id, text, metadata=None):
     """
     Use Ollama to generate embeddings for the given text and add it to the ChromaDB collection.

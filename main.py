@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
-from vector_db import add_document, collection
+from vector_db import add_document, collection, reset_database
 from rag_core import ask_codebase
 from visualize_db import create_3d_map
 
@@ -182,6 +182,19 @@ class DevMindCLI(cmd.Cmd):
         """Generate and open an interactive 3D semantic map."""
         print("Generating 3D semantic map...")
         create_3d_map()
+
+    def do_resetdb(self, arg):
+        """Delete all indexed vectors from the local database. Usage: resetdb [--yes]"""
+        force = arg.strip() == "--yes"
+
+        if not force:
+            confirm = input("This will delete all indexed data. Continue? [y/N]: ").strip().lower()
+            if confirm not in ("y", "yes"):
+                print("Operation canceled.")
+                return
+
+        reset_database()
+        print("Local index database cleared successfully.")
 
     def do_clear(self, arg):
         """Clear the terminal screen."""
